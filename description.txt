@@ -1,4 +1,4 @@
-The data we will be using is held within the cool_cars.json file. This is a collection of 30 different cars produced between the years 2000
+The data we will be using is held within the cool_cars.json file. This is a collection of 30 different cars produced between the years 2001
 and 2023. Each of the entries has 6 characteristics, with one of them being optional.The aspects for each entry are the car's make, model,
 production year, brake horsepower (BHP), the type of transmission, and whether or not
-it was a convertable.
+it was a convertable. Make, Model, Year, BHP, and transmission will always be present, while convertable will be optional (yes/no).

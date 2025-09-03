@@ -1,9 +1,17 @@
 import json
 import firebase_admin
+from firebase_admin import credentials
 from firebase_admin import firestore
 
+import google.auth
+
+# credentials, project = google.auth.default()
+
+cred = credentials.Certificate('credentials.json')
+
+
 # Application Default credentials are automatically created.
-app = firebase_admin.initialize_app()
+app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 with open('cool_cars.json') as f:

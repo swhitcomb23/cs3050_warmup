@@ -26,3 +26,31 @@ if doc.exists:
     print(f"Document data: {doc.to_dict()}")
 else:
     print("No such document!")
+
+
+# Class Cool_Car
+class Cool_Car:
+    def __init__(self, make, model, year, BHP, transmission, convertible=FALSE):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.BHP = BHP
+        self.transmission = transmission
+        self.convertible = convertible
+
+    @staticmethod
+    def from_dict(source):
+        #d
+
+    def to_dict(self):
+        # ...
+
+    def __repr__(self):
+        return f"Car(\
+                make={self.make}, \
+                model={self.model}, \
+                BHP={self.BHP}, \
+                transmission={self.transmission}, \
+                convertible={self.convertible}\
+            )"
+

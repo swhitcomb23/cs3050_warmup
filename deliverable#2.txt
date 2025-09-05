@@ -9,9 +9,7 @@ example queries:
 These queries would return that entire cars given information
 
 functional interface:
-we are going to supply this function with keywords stripped from input by the parsing function, specifically
-a keyword parameter, a optional logical parameter, and a object parameter. The function will return the full data
-of the car(s) it is being asked to find and supply this data to a printing function to make it readable. The interface
-will use pythons API to interact with the firestore database and make get calls to retrieve said data.
-
-
+The parser component converts user input into structured parameters and passes them to the datastore interface function.
+Those parameters being at least one keyword, an operator, and a value.
+The datastore function uses Python’s Firestore API to make get calls and returns the matching car data.
+A separate printing function formats the returned records into a human-readable output for the user.

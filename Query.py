@@ -18,9 +18,6 @@ db = firestore.client()
 # pretty printing function?
 
 doc_ref = db.collection("cool_cars").document("car2")
-
-
-
 doc = doc_ref.get()
 if doc.exists:
     print(f"Document data: {doc.to_dict()}")
@@ -30,7 +27,7 @@ else:
 
 # Class Cool_Car
 class Cool_Car:
-    def __init__(self, make, model, year, BHP, transmission, convertible=FALSE):
+    def __init__(self, make, model, year, BHP, transmission, convertible=False):
         self.make = make
         self.model = model
         self.year = year

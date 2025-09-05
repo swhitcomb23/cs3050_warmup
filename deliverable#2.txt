@@ -1,0 +1,13 @@
+Keywords: make, model, year, BHP/bhp, transmission, convertible, and
+logical operators: ==, <=, >=, <, >, !=
+
+functional interface:
+
+
+questions:
+do we need a select keyword?
+do we need to sort our data?
+
+in query.py --- parsing function which returns info fed into query function?
+or should the parsing function return a ready-made query that's fed to the interface function?
+

@@ -1,5 +1,12 @@
 Keywords: make, model, year, BHP/bhp, transmission, convertible, and
+
 logical operators: ==, <=, >=, <, >, !=
+
+example queries:
+    make == Porsche and BHP > 1000
+    model == "911 Porsche"
+    year >= 2001 and convertible == True
+These queries would return that entire cars given information
 
 functional interface:
 
@@ -7,6 +14,8 @@ functional interface:
 questions:
 do we need a select keyword?
 do we need to sort our data?
+price?
+do we need to define a class?
 
 in query.py --- parsing function which returns info fed into query function?
 or should the parsing function return a ready-made query that's fed to the interface function?

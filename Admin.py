@@ -28,7 +28,7 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
-        # ...
+        #d
 
     def to_dict(self):
         # ...

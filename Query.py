@@ -7,10 +7,10 @@ cred = credentials.Certificate('credentials.json')
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-with open('cool_cars.json') as f:
-    data = json.load(f)
+doc_ref = db.collection("cool_cars").document("car2")
 
-cars = data.get("cool_cars", {})
-for car_id, car_info in cars.items():
-    db.collection("cool_cars").document(car_id).set(car_info)
-
+doc = doc_ref.get()
+if doc.exists:
+    print(f"Document data: {doc.to_dict()}")
+else:
+    print("No such document!")

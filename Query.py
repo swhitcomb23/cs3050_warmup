@@ -11,7 +11,7 @@ db = firestore.client()
 
 # command line looping function
 
-# parsing function that takes in command line
+# parsing function that takes in command line, includes help
 
 # query function to communicate with database and get data
 

@@ -1,4 +1,4 @@
-Keywords: make, model, year, BHP/bhp, transmission, convertible, and
+Keywords: make, model, year, BHP/bhp, transmission, convertible, and, help
 
 logical operators: ==, <=, >=, <, >, !=
 

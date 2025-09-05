@@ -13,3 +13,12 @@ The parser component converts user input into structured parameters and passes t
 Those parameters being at least one keyword, an operator, and a value.
 The datastore function uses Python’s Firestore API to make get calls and returns the matching car data.
 A separate printing function formats the returned records into a human-readable output for the user.
+
+Parameters:
+        keyword (str): The field to filter on (e.g., "make", "year").
+        operator (str): A logical operator (e.g., "==", ">=", "<").
+        value (object): The value to compare against (e.g., "Porsche", 2001).
+
+Returns:
+        list[dict]: A list of car records (each record is a dictionary)
+        that satisfy the condition.

@@ -14,4 +14,3 @@ cars = data.get("cool_cars", {})
 for car_id, car_info in cars.items():
     db.collection("cool_cars").document(car_id).set(car_info)
 
-print('works')

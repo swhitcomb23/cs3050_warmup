@@ -6,7 +6,7 @@
       "year": 2005,
       "BHP": 1586,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car2": {
       "make": "Tesla",
@@ -14,7 +14,7 @@
       "year": 2020,
       "BHP": 514,
       "transmission": "Dual-Clutch",
-      "convertible": "No"
+      "convertible": false
     },
     "car3": {
       "make": "Ferrari",
@@ -22,7 +22,7 @@
       "year": 2008,
       "BHP": 437,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car4": {
       "make": "Ford",
@@ -30,7 +30,7 @@
       "year": 2017,
       "BHP": 1178,
       "transmission": "Semi-Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car5": {
       "make": "BMW",
@@ -38,7 +38,7 @@
       "year": 2014,
       "BHP": 1454,
       "transmission": "Semi-Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car6": {
       "make": "Tesla",
@@ -46,7 +46,7 @@
       "year": 2011,
       "BHP": 996,
       "transmission": "Manual",
-      "convertible": "No"
+      "convertible": false
     },
     "car7": {
       "make": "Chevrolet",
@@ -54,7 +54,7 @@
       "year": 2005,
       "BHP": 1258,
       "transmission": "Manual",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car8": {
       "make": "McLaren",
@@ -62,7 +62,7 @@
       "year": 2013,
       "BHP": 1112,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car9": {
       "make": "Aston Martin",
@@ -70,7 +70,7 @@
       "year": 2019,
       "BHP": 640,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car10": {
       "make": "Chevrolet",
@@ -78,7 +78,7 @@
       "year": 2010,
       "BHP": 361,
       "transmission": "Semi-Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car11": {
       "make": "McLaren",
@@ -86,7 +86,7 @@
       "year": 2007,
       "BHP": 502,
       "transmission": "Manual",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car12": {
       "make": "Ford",
@@ -94,7 +94,7 @@
       "year": 2016,
       "BHP": 1365,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car13": {
       "make": "Ferrari",
@@ -102,7 +102,7 @@
       "year": 2005,
       "BHP": 1564,
       "transmission": "Manual",
-      "convertible": "No"
+      "convertible": false
     },
     "car14": {
       "make": "Ferrari",
@@ -110,7 +110,7 @@
       "year": 2016,
       "BHP": 681,
       "transmission": "Semi-Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car15": {
       "make": "Aston Martin",
@@ -118,7 +118,7 @@
       "year": 2023,
       "BHP": 1351,
       "transmission": "Dual-Clutch",
-      "convertible": "No"
+      "convertible": false
     },
     "car16": {
       "make": "Ford",
@@ -126,7 +126,7 @@
       "year": 2011,
       "BHP": 832,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car17": {
       "make": "Ford",
@@ -134,7 +134,7 @@
       "year": 2003,
       "BHP": 1424,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car18": {
       "make": "BMW",
@@ -142,7 +142,7 @@
       "year": 2001,
       "BHP": 719,
       "transmission": "Manual",
-      "convertible": "No"
+      "convertible": false
     },
     "car19": {
       "make": "Chevrolet",
@@ -150,7 +150,7 @@
       "year": 2023,
       "BHP": 1460,
       "transmission": "Semi-Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car20": {
       "make": "Tesla",
@@ -158,7 +158,7 @@
       "year": 2021,
       "BHP": 1240,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car21": {
       "make": "Bugatti",
@@ -166,7 +166,7 @@
       "year": 2009,
       "BHP": 376,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car22": {
       "make": "Bugatti",
@@ -174,7 +174,7 @@
       "year": 2015,
       "BHP": 592,
       "transmission": "Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car23": {
       "make": "BMW",
@@ -182,7 +182,7 @@
       "year": 2017,
       "BHP": 533,
       "transmission": "Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car24": {
       "make": "Tesla",
@@ -190,7 +190,7 @@
       "year": 2005,
       "BHP": 727,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car25": {
       "make": "Ferrari",
@@ -198,7 +198,7 @@
       "year": 2004,
       "BHP": 568,
       "transmission": "Semi-Automatic",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car26": {
       "make": "Porsche",
@@ -206,7 +206,7 @@
       "year": 2002,
       "BHP": 652,
       "transmission": "Manual",
-      "convertible": "No"
+      "convertible": false
     },
     "car27": {
       "make": "Ferrari",
@@ -214,7 +214,7 @@
       "year": 2013,
       "BHP": 1080,
       "transmission": "Dual-Clutch",
-      "convertible": "Yes"
+      "convertible": true
     },
     "car28": {
       "make": "Bugatti",
@@ -222,7 +222,7 @@
       "year": 2007,
       "BHP": 456,
       "transmission": "Semi-Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car29": {
       "make": "BMW",
@@ -230,7 +230,7 @@
       "year": 2021,
       "BHP": 1465,
       "transmission": "Semi-Automatic",
-      "convertible": "No"
+      "convertible": false
     },
     "car30": {
       "make": "McLaren",
@@ -238,7 +238,7 @@
       "year": 2018,
       "BHP": 1513,
       "transmission": "Manual",
-      "convertible": "Yes"
+      "convertible": true
     }
   }
 }

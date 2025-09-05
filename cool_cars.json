@@ -13,8 +13,7 @@
       "model": "Model S Plaid",
       "year": 2020,
       "BHP": 514,
-      "transmission": "Dual-Clutch",
-      "convertible": false
+      "transmission": "Dual-Clutch"
     },
     "car3": {
       "make": "Ferrari",
@@ -45,8 +44,7 @@
       "model": "Model 3 Performance",
       "year": 2011,
       "BHP": 996,
-      "transmission": "Manual",
-      "convertible": false
+      "transmission": "Manual"
     },
     "car7": {
       "make": "Chevrolet",
@@ -77,8 +75,7 @@
       "model": "SSR",
       "year": 2010,
       "BHP": 361,
-      "transmission": "Semi-Automatic",
-      "convertible": false
+      "transmission": "Semi-Automatic"
     },
     "car11": {
       "make": "McLaren",
@@ -101,24 +98,21 @@
       "model": "Portofino M",
       "year": 2005,
       "BHP": 1564,
-      "transmission": "Manual",
-      "convertible": false
+      "transmission": "Manual"
     },
     "car14": {
       "make": "Ferrari",
       "model": "F8 Tributo",
       "year": 2016,
       "BHP": 681,
-      "transmission": "Semi-Automatic",
-      "convertible": false
+      "transmission": "Semi-Automatic"
     },
     "car15": {
       "make": "Aston Martin",
       "model": "DBS Superleggera",
       "year": 2023,
       "BHP": 1351,
-      "transmission": "Dual-Clutch",
-      "convertible": false
+      "transmission": "Dual-Clutch"
     },
     "car16": {
       "make": "Ford",
@@ -141,16 +135,14 @@
       "model": "M8 Competition",
       "year": 2001,
       "BHP": 719,
-      "transmission": "Manual",
-      "convertible": false
+      "transmission": "Manual"
     },
     "car19": {
       "make": "Chevrolet",
       "model": "Corvette Stingray",
       "year": 2023,
       "BHP": 1460,
-      "transmission": "Semi-Automatic",
-      "convertible": false
+      "transmission": "Semi-Automatic"
     },
     "car20": {
       "make": "Tesla",
@@ -181,8 +173,7 @@
       "model": "M8 Competition",
       "year": 2017,
       "BHP": 533,
-      "transmission": "Automatic",
-      "convertible": false
+      "transmission": "Automatic"
     },
     "car24": {
       "make": "Tesla",
@@ -205,8 +196,7 @@
       "model": "Cayman GT4",
       "year": 2002,
       "BHP": 652,
-      "transmission": "Manual",
-      "convertible": false
+      "transmission": "Manual"
     },
     "car27": {
       "make": "Ferrari",
@@ -221,16 +211,14 @@
       "model": "Chiron",
       "year": 2007,
       "BHP": 456,
-      "transmission": "Semi-Automatic",
-      "convertible": false
+      "transmission": "Semi-Automatic"
     },
     "car29": {
       "make": "BMW",
       "model": "i8",
       "year": 2021,
       "BHP": 1465,
-      "transmission": "Semi-Automatic",
-      "convertible": false
+      "transmission": "Semi-Automatic"
     },
     "car30": {
       "make": "McLaren",

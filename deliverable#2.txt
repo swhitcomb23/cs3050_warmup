@@ -9,14 +9,9 @@ example queries:
 These queries would return that entire cars given information
 
 functional interface:
+we are going to supply this function with keywords stripped from input by the parsing function, specifically
+a keyword parameter, a optional logical parameter, and a object parameter. The function will return the full data
+of the car(s) it is being asked to find and supply this data to a printing function to make it readable. The interface
+will use pythons API to interact with the firestore database and make get calls to retrieve said data.
 
-
-questions:
-do we need a select keyword?
-do we need to sort our data?
-price?
-do we need to define a class?
-
-in query.py --- parsing function which returns info fed into query function?
-or should the parsing function return a ready-made query that's fed to the interface function?
 

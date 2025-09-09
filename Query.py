@@ -96,16 +96,16 @@ def parse_query(query: str):
 
 # query function to communicate with database and get data
 
-# pretty printing function?
-
-query_loop()
-
 # doc_ref = db.collection("cool_cars").document("car2")
 # doc = doc_ref.get()
 # if doc.exists:
 #     print(f"Document data: {doc.to_dict()}")
 # else:
 #     print("No such document!")
+
+# pretty printing function?
+
+query_loop()
 
 
 # Class Cool_Car

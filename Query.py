@@ -16,7 +16,7 @@ db = firestore.client()
 
 # command line looping function
 def query_loop():
-    print("Mini Query Language REPL")
+    print("Mini Query Language")
     print("Type queries like: make == Porsche and BHP > 1000")
     print("model == \"Ford Mustang\"")
     print("Type 'exit' or 'quit' to stop.\n")
@@ -27,21 +27,27 @@ def query_loop():
         if query.lower() == "exit" or query.lower() == "quit":
             print("Goodbye")
             break
+        elif query.lower() == "help":
+            print("Mini Query Language")
+            print("Type queries like: make == Porsche and BHP > 1000")
+            print("model == \"Ford Mustang\"")
+            print("Type 'exit' or 'quit' to stop.\n")
 
         # skip empty lines
         if not query:
             continue
 
-        try:
-            results = parse_query(query)
-            print("Parsed conditions:", results)
-        except Exception as e:
-            print("Error parsing query:", e)
+        if query.lower() != "help":
+            try:
+                results = parse_query(query.lower())
+                print("Parsed conditions:", results)
+            except Exception as e:
+                print("Error parsing query:", e)
 
 
 # parsing function that takes in command line string, includes help
 def parse_query(query: str):
-    # --- Keywords (fields) ---
+    # Keywords
     MAKE = Keyword("make")
     MODEL = Keyword("model")
     YEAR = Keyword("year")
@@ -52,10 +58,10 @@ def parse_query(query: str):
 
     field = MAKE | MODEL | YEAR | BHP | TRANSMISSION | CONVERTIBLE | HELP
 
-    # --- Operators ---
+    # Operators
     operator = oneOf("== != < <= > >=")
 
-    # --- Values ---
+    # Values
     integer = pyparsing_common.integer
     boolean = oneOf("True False").setParseAction(lambda t: t[0] == "True")
     quoted_string = dblQuotedString.setParseAction(removeQuotes)
@@ -68,10 +74,10 @@ def parse_query(query: str):
 
     value = integer | boolean | quoted_string | identifier
 
-    # --- Single condition ---
+    # Single condition
     condition = (field + operator + value).setParseAction(lambda t: (t[0], t[1], t[2]))
 
-    # --- Boolean logic (force and/or as operators here) ---
+    # Boolean logic (force and/or as operators here)
     expr = infixNotation(
         condition,
         [

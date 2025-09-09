@@ -113,11 +113,15 @@ class Cool_Car:
         self.convertible = convertible
 
     @staticmethod
-    #def from_dict(source):
-        #d
+    def from_dict(source):
+        cars = db.collection("Cool_Cars").stream()
+        new_car_number = len(cars) + 1
+        db.collection("Cool_Cars").document(f"car{new_car_number}").set(source)
 
-    #def to_dict(self):
-        # ...
+
+    def to_dict(self):
+        doc_ref = db.collection("Cool_Cars").document(str(self))
+        return doc_ref.get()
 
     def __repr__(self):
         return f"Car(\

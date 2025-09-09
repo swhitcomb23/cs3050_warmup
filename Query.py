@@ -96,6 +96,9 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
+        cars = db.collection("Cool_Cars").stream()
+        new_car_number = len(cars) + 1
+        db.collection("Cool_Cars").document(f"car{new_car_number}").set(source)
 
 
     def to_dict(self):

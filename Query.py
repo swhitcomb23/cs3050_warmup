@@ -18,6 +18,7 @@ db = firestore.client()
 def query_loop():
     print("Mini Query Language REPL")
     print("Type queries like: make == Porsche and BHP > 1000")
+    print("model == \"Ford Mustang\"")
     print("Type 'exit' or 'quit' to stop.\n")
 
     while True:
@@ -38,36 +39,53 @@ def query_loop():
             print("Error parsing query:", e)
 
 
-# parsing function that takes in command line, includes help
+# parsing function that takes in command line string, includes help
 def parse_query(query: str):
-    """
-        Parse a query string and return a list of (field, operator, value).
-    """
-    # Set up the query language
-    # Keywords
+    # --- Keywords (fields) ---
     MAKE = Keyword("make")
     MODEL = Keyword("model")
     YEAR = Keyword("year")
-    BHP = CaselessKeyword("BHP")  # case insensitive
+    BHP = CaselessKeyword("BHP")
     TRANSMISSION = Keyword("transmission")
     CONVERTIBLE = Keyword("convertible")
     HELP = Keyword("help")
 
     field = MAKE | MODEL | YEAR | BHP | TRANSMISSION | CONVERTIBLE | HELP
 
-    # Operators
+    # --- Operators ---
     operator = oneOf("== != < <= > >=")
 
-    # Values
+    # --- Values ---
     integer = pyparsing_common.integer
     boolean = oneOf("True False").setParseAction(lambda t: t[0] == "True")
     quoted_string = dblQuotedString.setParseAction(removeQuotes)
-    identifier = Word(alphanums + "_")
+
+    # Exclude reserved words
+    reserved = {"and", "or", "True", "False"}
+    identifier = Word(alphanums + "_").setParseAction(
+        lambda t: t[0] if t[0] not in reserved else None
+    )
 
     value = integer | boolean | quoted_string | identifier
 
-    # Condition
-    condition = field("field") + operator("op") + value("value")
+    # --- Single condition ---
+    condition = (field + operator + value).setParseAction(lambda t: (t[0], t[1], t[2]))
+
+    # --- Boolean logic (force and/or as operators here) ---
+    expr = infixNotation(
+        condition,
+        [
+            (CaselessKeyword("and"), 2, opAssoc.LEFT),
+            (CaselessKeyword("or"), 2, opAssoc.LEFT),
+        ]
+    )
+
+    # Parse
+    parsed = expr.parseString(query, parseAll=True)
+    tree = parsed.asList()[0]
+    return tree
+
+
 
 
 # query function to communicate with database and get data

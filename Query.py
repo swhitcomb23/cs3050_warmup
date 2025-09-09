@@ -95,11 +95,12 @@ class Cool_Car:
         self.convertible = convertible
 
     @staticmethod
-    #def from_dict(source):
-        #d
+    def from_dict(source):
 
-    #def to_dict(self):
-        # ...
+
+    def to_dict(self):
+        doc_ref = db.collection("Cool_Cars").document(str(self))
+        return doc_ref.get()
 
     def __repr__(self):
         return f"Car(\

@@ -1,5 +1,6 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+from google.cloud.firestore_v1 import FieldFilter
 from pyparsing import (
     Word, alphanums, oneOf, Keyword, CaselessKeyword,
     dblQuotedString, removeQuotes, infixNotation, opAssoc, pyparsing_common
@@ -9,7 +10,7 @@ from pyparsing import (
 cred = credentials.Certificate('credentials.json')
 app = firebase_admin.initialize_app(cred)
 db = firestore.client()
-
+collection = "cool_cars"
 
 # command line looping function
 def query_loop():
@@ -30,6 +31,7 @@ def query_loop():
             print("model == \"Ford Mustang\"")
             print("Type 'exit' or 'quit' to stop.\n")
 
+
         # skip empty lines
         if not query:
             continue
@@ -37,7 +39,7 @@ def query_loop():
         if query.lower() != "help":
             try:
                 results = parse_query(query.lower())
-                print("Parsed conditions:", results)
+                print("Parsed conditions:", query_to_Firebase(results))
             except Exception as e:
                 print("Error parsing query:", e)
 
@@ -89,7 +91,11 @@ def parse_query(query: str):
     return tree
 
 
+def query_to_Firebase(query):
 
+    response = db.collection(collection).where(filter=FieldFilter('model','==','i8')).stream()
+    for doc in response:
+        print(f"{doc.id} => {doc.to_dict()}")
 
 # query function to communicate with database and get data
 
@@ -117,13 +123,13 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
-        cars = db.collection("Cool_Cars").stream()
+        cars = db.collection(collection).stream()
         new_car_number = len(cars) + 1
-        db.collection("Cool_Cars").document(f"car{new_car_number}").set(source)
+        db.collection(collection).document(f"car{new_car_number}").set(source)
 
 
     def to_dict(self):
-        doc_ref = db.collection("Cool_Cars").document(str(self))
+        doc_ref = db.collection(collection).document(str(self))
         return doc_ref.get()
 
     def __repr__(self):

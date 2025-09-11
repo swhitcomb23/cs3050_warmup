@@ -38,7 +38,7 @@ def query_loop():
 
         if query.lower() != "help":
             try:
-                results = parse_query(query.lower())
+                results = parse_query(query)
                 print("Parsed conditions:", query_to_Firebase(results))
             except Exception as e:
                 print("Error parsing query:", e)
@@ -91,9 +91,12 @@ def parse_query(query: str):
     return tree
 
 
-def query_to_Firebase(query):
+def query_to_Firebase(query: tuple):
+    if 'and' not in query:
+        response = db.collection(collection).where(filter=FieldFilter(query[0],query[1],query[2])).stream()
+    else:
+        response = db.collection(collection).where(filter=FieldFilter(query[0][0],query[0][1],query[0][2])).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
 
-    response = db.collection(collection).where(filter=FieldFilter('model','==','i8')).stream()
     for doc in response:
         print(f"{doc.id} => {doc.to_dict()}")
 

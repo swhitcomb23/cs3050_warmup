@@ -93,8 +93,10 @@ def parse_query(query: str):
 
 
 def query_to_Firebase(query):
-
-    response = db.collection(collection).where(filter=FieldFilter('model','==','i8')).stream()
+    if 'and' not in query:
+        response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
+    else:
+        response = db.collection(collection).where(filter=FieldFilter(query[0][0], query[0][1], query[0][2])).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
     for doc in response:
         print(f"{doc.id} => {doc.to_dict()}")
 

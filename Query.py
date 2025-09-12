@@ -12,6 +12,7 @@ app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 collection = "cool_cars"
 
+
 # command line looping function
 def query_loop():
     print("Mini Query Language")
@@ -30,7 +31,6 @@ def query_loop():
             print("Type queries like: make == Porsche and BHP > 1000")
             print("model == \"Ford Mustang\"")
             print("Type 'exit' or 'quit' to stop.\n")
-
 
         # skip empty lines
         if not query:
@@ -54,9 +54,8 @@ def parse_query(query: str):
     BHP = CaselessKeyword("BHP")
     TRANSMISSION = Keyword("transmission")
     CONVERTIBLE = Keyword("convertible")
-    HELP = Keyword("help")
 
-    field = MAKE | MODEL | YEAR | BHP | TRANSMISSION | CONVERTIBLE | HELP
+    field = MAKE | MODEL | YEAR | BHP | TRANSMISSION | CONVERTIBLE
 
     # Operators
     operator = oneOf("== != < <= > >=")
@@ -92,6 +91,7 @@ def parse_query(query: str):
     return tree
 
 
+# query function to communicate with database and get data
 def query_to_Firebase(query):
     if 'and' not in query:
         response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
@@ -100,16 +100,9 @@ def query_to_Firebase(query):
     for doc in response:
         print(f"{doc.id} => {doc.to_dict()}")
 
-# query function to communicate with database and get data
-
-# doc_ref = db.collection("cool_cars").document("car2")
-# doc = doc_ref.get()
-# if doc.exists:
-#     print(f"Document data: {doc.to_dict()}")
-# else:
-#     print("No such document!")
 
 # pretty printing function?
+
 
 query_loop()
 
@@ -143,4 +136,3 @@ class Cool_Car:
                 transmission={self.transmission}, \
                 convertible={self.convertible}\
             )"
-

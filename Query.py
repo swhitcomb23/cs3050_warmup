@@ -39,7 +39,8 @@ def query_loop():
         if query.lower() != "help":
             try:
                 results = parse_query(query)
-                print("Parsed conditions:", query_to_Firebase(results))
+                print("Parsed conditions:", results)
+                query_to_Firebase(results)
             except Exception as e:
                 print("Error parsing query:", e)
 

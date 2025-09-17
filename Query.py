@@ -1,9 +1,7 @@
-from http.client import responses
 
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1 import FieldFilter
-from httpx import stream
 from pyparsing import (
     Word, alphanums, oneOf, Keyword, CaselessKeyword,
     dblQuotedString, removeQuotes, infixNotation, opAssoc, pyparsing_common
@@ -96,6 +94,8 @@ def parse_query(query: str):
 
 # query function to communicate with database and get data
 def query_to_Firebase(query):
+    response_list = []
+    response2_list = []
     response2 = []
     if 'and' in query:
         response = db.collection(collection).where(filter=FieldFilter(query[0][0], query[0][1], query[0][2])).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
@@ -104,10 +104,15 @@ def query_to_Firebase(query):
         response2 = (db.collection(collection)).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
     else:
         response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
+
     for doc in response:
-        print(f"{doc.id} => {doc.to_dict()}")
+        response_list.append(f"{doc.id} => {doc.to_dict()}")
     for doc in response2:
-        print(f"{doc.id} => {doc.to_dict()}")
+        x = f"{doc.id} => {doc.to_dict()}"
+        if x not in response_list:
+            response_list.append(x)
+    for doc in response_list:
+        print(doc)
 
 
 # pretty printing function?

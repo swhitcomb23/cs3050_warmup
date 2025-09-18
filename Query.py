@@ -87,6 +87,7 @@ class Cool_Car:
     def print(self):
         result = ""
         result += str(self.year) + ", " + self.make + " " + self.model + ", "
+        # checks if car is convertible
         if (self.convertible):
             result += "Convertible, "
         result += self.transmission + " transmission with " + str(self.BHP) + " horsepower."

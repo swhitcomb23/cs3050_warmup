@@ -191,3 +191,11 @@ class Cool_Car:
                 transmission={self.transmission}, \
                 convertible={self.convertible}\
             )"
+
+    def print(self):
+        result = ""
+        result += self.year + " " + self.make + " " + self.model
+        if (self.convertible):
+            result += " convertible\n"
+        result += self.transmission + " transmission with " + self.BHP + " horsepower. \n \n"
+        print(result)

@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -16,7 +17,7 @@ collection = "cool_cars"
 
 # Class Cool_Car
 class Cool_Car:
-    def __init__(self, make, model, year, BHP, transmission, convertible=False):
+    def __init__(self, make, model, year, BHP, transmission, convertible=None):
         self.make = make
         self.model = model
         self.year = year
@@ -26,7 +27,11 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
-        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
+        if source.get('convertible'):
+            cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
+        else:
+            cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"])
+
 
         if "make" in source:
             cool_car.make = source["make"]
@@ -73,20 +78,15 @@ class Cool_Car:
         return dest
 
     def __repr__(self):
-        return f"Car(\
-                make={self.make}, \
-                model={self.model}, \
-                BHP={self.BHP}, \
-                transmission={self.transmission}, \
-                convertible={self.convertible}\
-            )"
+        return (f"Car(make={self.make}, model={self.model}, "
+                f"BHP={self.BHP}, transmission={self.transmission}, convertible={self.convertible})")
 
     def print(self):
         result = ""
-        result += "\n" + str(self.year) + " " + self.make + " " + self.model
-        if self.convertible:
-            result += " convertible\n"
-        result += self.transmission + " transmission with " + str(self.BHP) + " horsepower. \n"
+        result += str(self.year) + ", " + self.make + " " + self.model + ", "
+        if (self.convertible):
+            result += "Convertible, "
+        result += self.transmission + " transmission with " + str(self.BHP) + " horsepower."
         print(result)
 
 
@@ -97,7 +97,8 @@ class Cool_Car:
 def query_loop():
     print("Mini Query Language")
     print("Type queries like: make == Porsche and BHP > 1000")
-    print("model == \"Ford Mustang\"")
+    print("model == \"Mustang Shelby GT500\"")
+    print("Type 'help' for more information")
     print("Type 'exit' or 'quit' to stop.\n")
 
     while True:

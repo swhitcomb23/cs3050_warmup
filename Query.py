@@ -137,7 +137,7 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
-        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["convertible"])
+        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
 
         if "make" in source:
             cool_car.make = source["make"]
@@ -153,6 +153,9 @@ class Cool_Car:
 
         if "year" in source:
             cool_car.year = source["year"]
+
+        if "convertible" in source:
+            cool_car.convertible = source["convertible"]
 
         return cool_car
 

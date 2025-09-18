@@ -31,6 +31,10 @@ def query_loop():
             print("Mini Query Language")
             print("Type queries like: make == Porsche and BHP > 1000")
             print("model == \"Ford Mustang\"")
+            print("Query language is case sensitive for makes and models")
+            print("Wrap multy-word makes/models in double quotes")
+            print("Valid keywords: make, model, year, bph, transmission, convertible")
+            print("Valid logic operators: == != < <= > >=")
             print("Type 'exit' or 'quit' to stop.\n")
 
         # skip empty lines

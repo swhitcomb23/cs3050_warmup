@@ -83,10 +83,10 @@ class Cool_Car:
 
     def print(self):
         result = ""
-        result += str(self.year) + " " + self.make + " " + self.model
-        if (self.convertible):
+        result += "\n" + str(self.year) + " " + self.make + " " + self.model
+        if self.convertible:
             result += " convertible\n"
-        result += self.transmission + " transmission with " + str(self.BHP) + " horsepower. \n \n"
+        result += self.transmission + " transmission with " + str(self.BHP) + " horsepower. \n"
         print(result)
 
 

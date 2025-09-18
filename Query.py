@@ -133,14 +133,48 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
-        cars = db.collection(collection).stream()
-        new_car_number = len(cars) + 1
-        db.collection(collection).document(f"car{new_car_number}").set(source)
+        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["convertible"])
+
+        if "make" in source:
+            cool_car.make = source["make"]
+
+        if "model" in source:
+            cool_car.model = source["model"]
+
+        if "BHP" in source:
+            cool_car.BHP = source["BHP"]
+
+        if "transmission" in source:
+            cool_car.transmission = source["transmission"]
+
+        if "year" in source:
+            cool_car.year = source["year"]
+
+        return cool_car
 
 
     def to_dict(self):
-        doc_ref = db.collection(collection).document(str(self))
-        return doc_ref.get()
+        dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
+
+        if self.make:
+            dest["make"] = self.make
+
+        if self.model:
+            dest["model"] = self.model
+
+        if self.BHP:
+            dest["BHP"] = self.BHP
+
+        if self.transmission:
+            dest["transmission"] = self.transmission
+
+        if self.year:
+            dest["year"] = self.year
+
+        if self.convertible:
+            dest["convertible"] = self.convertible
+
+        return dest
 
     def __repr__(self):
         return f"Car(\

@@ -27,12 +27,13 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
+        # Checks whether the intended car is a convertible and creates a Cool_Car object using given dict
         if source.get('convertible'):
             cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
         else:
             cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"])
 
-
+        # checks for different attributes in source and then sets Cool_Car attributes to given values
         if "make" in source:
             cool_car.make = source["make"]
 
@@ -55,8 +56,10 @@ class Cool_Car:
 
 
     def to_dict(self):
+        #creates a dict from given Cool_Car object
         dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
 
+        # Checks if given Cool_Car has attribute and adds it to dict in appropriate key
         if self.make:
             dest["make"] = self.make
 

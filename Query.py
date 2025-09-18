@@ -14,6 +14,77 @@ db = firestore.client()
 collection = "cool_cars"
 
 
+# Class Cool_Car
+class Cool_Car:
+    def __init__(self, make, model, year, BHP, transmission, convertible=False):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.BHP = BHP
+        self.transmission = transmission
+        self.convertible = convertible
+
+    @staticmethod
+    def from_dict(source):
+        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
+
+        if "make" in source:
+            cool_car.make = source["make"]
+
+        if "model" in source:
+            cool_car.model = source["model"]
+
+        if "BHP" in source:
+            cool_car.BHP = source["BHP"]
+
+        if "transmission" in source:
+            cool_car.transmission = source["transmission"]
+
+        if "year" in source:
+            cool_car.year = source["year"]
+
+        if "convertible" in source:
+            cool_car.convertible = source["convertible"]
+
+        return cool_car
+
+
+    def to_dict(self):
+        dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
+
+        if self.make:
+            dest["make"] = self.make
+
+        if self.model:
+            dest["model"] = self.model
+
+        if self.BHP:
+            dest["BHP"] = self.BHP
+
+        if self.transmission:
+            dest["transmission"] = self.transmission
+
+        if self.year:
+            dest["year"] = self.year
+
+        if self.convertible:
+            dest["convertible"] = self.convertible
+
+        return dest
+
+    def __repr__(self):
+        return f"Car(\
+                make={self.make}, \
+                model={self.model}, \
+                BHP={self.BHP}, \
+                transmission={self.transmission}, \
+                convertible={self.convertible}\
+            )"
+
+
+
+
+
 # command line looping function
 def query_loop():
     print("Mini Query Language")
@@ -110,9 +181,10 @@ def query_to_Firebase(query):
         response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
 
     for doc in response:
-        response_list.append(f"{doc.id} => {doc.to_dict()}")
+        car = Cool_Car.from_dict(doc.to_dict())
+        response_list.append(car)
     for doc in response2:
-        x = f"{doc.id} => {doc.to_dict()}"
+        x = Cool_Car.from_dict(doc.to_dict())
         if x not in response_list:
             response_list.append(x)
     for doc in response_list:
@@ -125,69 +197,3 @@ def query_to_Firebase(query):
 query_loop()
 
 
-# Class Cool_Car
-class Cool_Car:
-    def __init__(self, make, model, year, BHP, transmission, convertible=False):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.BHP = BHP
-        self.transmission = transmission
-        self.convertible = convertible
-
-    @staticmethod
-    def from_dict(source):
-        cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
-
-        if "make" in source:
-            cool_car.make = source["make"]
-
-        if "model" in source:
-            cool_car.model = source["model"]
-
-        if "BHP" in source:
-            cool_car.BHP = source["BHP"]
-
-        if "transmission" in source:
-            cool_car.transmission = source["transmission"]
-
-        if "year" in source:
-            cool_car.year = source["year"]
-
-        if "convertible" in source:
-            cool_car.convertible = source["convertible"]
-
-        return cool_car
-
-
-    def to_dict(self):
-        dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
-
-        if self.make:
-            dest["make"] = self.make
-
-        if self.model:
-            dest["model"] = self.model
-
-        if self.BHP:
-            dest["BHP"] = self.BHP
-
-        if self.transmission:
-            dest["transmission"] = self.transmission
-
-        if self.year:
-            dest["year"] = self.year
-
-        if self.convertible:
-            dest["convertible"] = self.convertible
-
-        return dest
-
-    def __repr__(self):
-        return f"Car(\
-                make={self.make}, \
-                model={self.model}, \
-                BHP={self.BHP}, \
-                transmission={self.transmission}, \
-                convertible={self.convertible}\
-            )"

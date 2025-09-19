@@ -199,7 +199,4 @@ def query_to_Firebase(query):
     for doc in response_list:
         doc.print()
 
-# pretty printing function?
-
-
 query_loop()

@@ -27,12 +27,13 @@ class Cool_Car:
 
     @staticmethod
     def from_dict(source):
+        # Checks whether the intended car is a convertible and creates a Cool_Car object using given dict
         if source.get('convertible'):
             cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"], source["convertible"])
         else:
             cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"])
 
-
+        # checks for different attributes in source and then sets Cool_Car attributes to given values
         if "make" in source:
             cool_car.make = source["make"]
 
@@ -55,8 +56,10 @@ class Cool_Car:
 
 
     def to_dict(self):
+        #creates a dict from given Cool_Car object
         dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
 
+        # Checks if given Cool_Car has attribute and adds it to dict in appropriate key
         if self.make:
             dest["make"] = self.make
 
@@ -84,6 +87,7 @@ class Cool_Car:
     def print(self):
         result = ""
         result += str(self.year) + ", " + self.make + " " + self.model + ", "
+        # checks if car is convertible
         if (self.convertible):
             result += "Convertible, "
         result += self.transmission + " transmission with " + str(self.BHP) + " horsepower."
@@ -125,7 +129,7 @@ def query_loop():
             try:
                 results = parse_query(query)
                 print("Parsed conditions:", results)
-                query_to_Firebase(results)
+                query_to_firebase(results)
             except Exception as e:
                 print("Error parsing query:", e)
 
@@ -176,27 +180,37 @@ def parse_query(query: str):
     return tree
 
 
-# query function to communicate with database and get data
-def query_to_Firebase(query):
+# query function to communicate with database and get the documents
+# This function also prints the documents that it called
+def query_to_firebase(query):
+    # These are the placeholders for the response at the end and the the secondary response for an or query
     response_list = []
     response2_list = []
     response2 = []
     if 'and' in query:
+        # The first .where corresponds to the first query and the second .where corresponds to the second query (after the 'and')
         response = db.collection(collection).where(filter=FieldFilter(query[0][0], query[0][1], query[0][2])).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
     elif 'or' in query:
+        # response is the first query and response2 is the second query
         response = (db.collection(collection)).where(filter=FieldFilter(query[0][0], query[0][1], query[0][2])).stream()
         response2 = (db.collection(collection)).where(filter=FieldFilter(query[2][0], query[2][1], query[2][2])).stream()
     else:
         response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
 
+# This is the loop that changes the documents into Cool_Cars the custom class
     for doc in response:
+        #This changes the documents into Cool Cars
         car = Cool_Car.from_dict(doc.to_dict())
         response_list.append(car)
-    for doc in response2:
-        x = Cool_Car.from_dict(doc.to_dict())
+    for dic in response2:
+        #This changes the documents into Cool Cars from the second response
+        x = Cool_Car.from_dict(dic.to_dict())
         if x not in response_list:
             response_list.append(x)
-    for doc in response_list:
-        doc.print()
+
+#This loop prints the responses to the queries
+    for cool_car in response_list:
+        cool_car.print()
+
 
 query_loop()

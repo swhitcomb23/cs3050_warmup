@@ -105,6 +105,7 @@ def query_loop():
     print("Type 'help' for more information")
     print("Type 'exit' or 'quit' to stop.\n")
 
+    # Looping for the query
     while True:
         query = input("-> ").strip()
 
@@ -125,6 +126,7 @@ def query_loop():
         if not query:
             continue
 
+        # Passing the query on
         if query.lower() != "help":
             try:
                 results = parse_query(query)

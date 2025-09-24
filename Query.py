@@ -1,5 +1,3 @@
-from contextlib import nullcontext
-
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1 import FieldFilter
@@ -33,7 +31,7 @@ class Cool_Car:
         else:
             cool_car = Cool_Car(source["make"], source["model"], source["BHP"], source["transmission"], source["year"])
 
-        # checks for different attributes in source and then sets Cool_Car attributes to given values
+        # Checks for different attributes in source and then sets Cool_Car attributes to given values
         if "make" in source:
             cool_car.make = source["make"]
 
@@ -56,7 +54,7 @@ class Cool_Car:
 
 
     def to_dict(self):
-        #creates a dict from given Cool_Car object
+        # Creates a dict from given Cool_Car object
         dest = {"make": self.make, "model": self.model, "BHP": self.BHP, "transmission": self.transmission, "year": self.year, "convertible": self.convertible}
 
         # Checks if given Cool_Car has attribute and adds it to dict in appropriate key
@@ -87,7 +85,7 @@ class Cool_Car:
     def print(self):
         result = ""
         result += str(self.year) + ", " + self.make + " " + self.model + ", "
-        # checks if car is convertible
+        # Checks if car is convertible
         if (self.convertible):
             result += "Convertible, "
         result += self.transmission + " transmission with " + str(self.BHP) + " horsepower."
@@ -97,7 +95,7 @@ class Cool_Car:
 
 
 
-# command line looping function
+# Command line looping function
 def query_loop():
     print("Mini Query Language")
     print("Type queries like: make == Porsche and BHP > 1000")
@@ -122,7 +120,7 @@ def query_loop():
             print("Valid logic operators: == != < <= > >=")
             print("Type 'exit' or 'quit' to stop.\n")
 
-        # skip empty lines
+        # Skip empty lines
         if not query:
             continue
 
@@ -139,7 +137,7 @@ def query_loop():
 
 
 
-# parsing function that takes in command line string, includes help
+# Parsing function that takes in command line string, includes help
 def parse_query(query: str):
     # Keywords
     MAKE = Keyword("make")
@@ -185,8 +183,8 @@ def parse_query(query: str):
     return tree
 
 
-# query function to communicate with database and get the documents
-# This function also prints the documents that it called
+# Query function to communicate with database and get the documents
+# Also prints the documents that it called using the Cool_Car class
 def query_to_firebase(query):
     # These are the placeholders for the response at the end and the the secondary response for an or query
     response_list = []
@@ -202,18 +200,18 @@ def query_to_firebase(query):
     else:
         response = db.collection(collection).where(filter=FieldFilter(query[0], query[1], query[2])).stream()
 
-# This is the loop that changes the documents into Cool_Cars the custom class
+    # This is the loop that changes the documents into Cool_Cars the custom class
     for doc in response:
-        #This changes the documents into Cool Cars
+        # This changes the documents into Cool Cars
         car = Cool_Car.from_dict(doc.to_dict())
         response_list.append(car)
     for dic in response2:
-        #This changes the documents into Cool Cars from the second response
+        # This changes the documents into Cool Cars from the second response
         x = Cool_Car.from_dict(dic.to_dict())
         if x not in response_list:
             response_list.append(x)
 
-#This loop prints the responses to the queries
+    # This loop prints the responses to the queries
     for cool_car in response_list:
         cool_car.print()
 

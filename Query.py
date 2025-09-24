@@ -186,7 +186,7 @@ def parse_query(query: str):
 
 
 # query function to communicate with database and get the documents
-# This function also prints the documents that it called
+# This function also prints the documents that is called
 def query_to_firebase(query):
     # These are the placeholders for the response at the end and the the secondary response for an or query
     response_list = []

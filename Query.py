@@ -131,7 +131,10 @@ def query_loop():
                 print("Parsed conditions:", results)
                 query_to_firebase(results)
             except Exception as e:
-                print("Error parsing query:", e)
+                print("Error parsing query, here are some examples:")
+                print("make == Porsche and BHP > 1000")
+                print("model == \"Ford Mustang\"")
+
 
 
 # parsing function that takes in command line string, includes help
